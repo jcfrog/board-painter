@@ -2,6 +2,10 @@
 
 This tool was originally made to create chess board illustrations for [Musketeer Chess](http://musketeerchess.net) (rules, board setup, pieces moves and captures...).
 
+It can make things like that : 
+
+![board painter examples](http://musketeerchess.net/forum/download/file.php?id=3)
+
 ## Demo
 
 You can test it on [Musketeer Chess site](http://musketeerchess.net/tools/boardpainter/) with many more pieces (this code only includes classic chess pieces icons taken from wikipedia)
