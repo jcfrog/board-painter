@@ -1,6 +1,6 @@
 # Board Painter 
 
-This tool was originaly made to create chess board illustrations for [Musketeer Chess](http://musketeerchess.net) (rules, board setup, pieces moves and captures...).
+This tool was originally made to create chess board illustrations for [Musketeer Chess](http://musketeerchess.net) (rules, board setup, pieces moves and captures...).
 
 ## Demo
 
