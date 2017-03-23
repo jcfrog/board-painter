@@ -4,7 +4,7 @@ This tool was originally made to create chess board illustrations for [Musketeer
 
 ## Demo
 
-You can test it on [Musketeer Chess site] with many more pieces (this code only includes classic chess pieces icons taken from wikipedia)
+You can test it on [Musketeer Chess site](http://musketeerchess.net/tools/boardpainter/) with many more pieces (this code only includes classic chess pieces icons taken from wikipedia)
 
 ## installation
 
