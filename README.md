@@ -2,6 +2,9 @@
 
 This tool was originaly made to create chess board illustrations for [Musketeer Chess](http://musketeerchess.net) (rules, board setup, pieces moves and captures...).
 
+## Demo
+
+You can test it on [Musketeer Chess site] with many more pieces (this code on only includes classic chess pieces)
 
 ## installation
 
@@ -38,4 +41,4 @@ A lot of settings are available to change the board configuration and items’ c
 
 ## Special thanks
 
-Special thanks to Dr Zied Haddad from Musketeer Chess who allowed to share this code.
+Special thanks to Dr Zied Haddad from Musketeer Chess who allowed me to share this code.
