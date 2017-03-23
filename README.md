@@ -12,8 +12,8 @@ Upload the source code on a web server with PHP.
 
 ## Uses
 
-- [Bootstrap colorpicker](https://github.com/itsjavi/bootstrap-colorpicker)
 - jQuery
+- [Bootstrap colorpicker](https://github.com/itsjavi/bootstrap-colorpicker)
 - [FileSaver.js](https://github.com/eligrey/FileSaver.js)
 
 ## User guide 
