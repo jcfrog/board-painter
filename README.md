@@ -20,6 +20,10 @@ Upload the source code on a web server with PHP.
 - [Bootstrap colorpicker](https://github.com/itsjavi/bootstrap-colorpicker)
 - [FileSaver.js](https://github.com/eligrey/FileSaver.js)
 
+## Discussion
+
+We propose [this thread](http://musketeerchess.net/forum/viewtopic.php?f=7&t=123)
+
 ## User guide 
 
 A lot of settings are available to change the board configuration and items’ colours :
