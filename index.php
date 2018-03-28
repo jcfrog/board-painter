@@ -39,9 +39,7 @@
 	
 </head>
 
-	<body>
-
- 
+	<body> 	
 	<script language='javascript'>
 
 	var NBCOLS=8;
@@ -73,13 +71,15 @@
 		constructor(resourcePath, clipx, clipy) {
 		    this.x=0;
 		    this.y=0;
+			this.rotation = 0 ; // in radians
 		  }
-		  setResource(resourcePath, clipx, clipy, clipw, cliph){
+		  setResource(resourcePath, clipx, clipy, clipw, cliph, rot){
 			    this.resourcePath=resourcePath;
 			    this.clipx = clipx;
 			    this.clipy = clipy;
 			    this.clipw = clipw;
 			    this.cliph = cliph;
+				this.rotation = rot;
 			}
 		  setPosition(x,y,w,h){ // in parent canvas coordinates
 			  this.x = x;
@@ -89,7 +89,23 @@
 			}
 		  paint(ctx){
 			  if (resources[this.resourcePath] != undefined){
-				  ctx.drawImage(resources[this.resourcePath],this.clipx,this.clipy,this.clipw,this.cliph,this.x,this.y,this.w,this.h);
+					if (this.rotation != 0){
+
+						var x = this.x + CZ / 2 ;
+						var y = this.y + CZ / 2 ;
+						ctx.translate(x, y);
+						ctx.rotate(this.rotation);
+						
+						ctx.drawImage(resources[this.resourcePath],
+							this.clipx,this.clipy,this.clipw,this.cliph,
+							-this.w / 2 , -this.h / 2, this.w, this.h);
+
+						ctx.rotate(-this.rotation);
+						ctx.translate(-x, -y);
+
+					}else{
+				  		ctx.drawImage(resources[this.resourcePath],this.clipx,this.clipy,this.clipw,this.cliph,this.x,this.y,this.w,this.h);
+					}
 			  }else{
 				  //console.log("Paint error: can't find resource for this path:"+this.resourcePath);
 			  }
@@ -103,6 +119,7 @@
 			    this.clipy = pastille.clipy;
 			    this.clipw = pastille.clipw;
 			    this.cliph = pastille.cliph;
+				this.rotation = pastille.rotation;
 			}
 			dump(){
 				return JSON.stringify(this);
@@ -167,6 +184,7 @@
 			                		this.items[row][col].clipy = obj.items[row][col].clipy ;
 			                		this.items[row][col].cliph = obj.items[row][col].cliph ;
 			                		this.items[row][col].clipw = obj.items[row][col].clipw ;
+									this.items[row][col].rotation = obj.items[row][col].rotation ;
 		                		} 
 		                	}
 	                	}
@@ -217,6 +235,7 @@
 	var BLACK="#CF8948";
 	var WHITE="#FFCC9C";
 	var CZ=100;
+	var brushRotation = 0 ;
 
 	var BOARDH=NBROWS*CZ;
 	var BOARDW=NBCOLS*CZ;
@@ -254,13 +273,21 @@
 	    	var prct=0.20;
 	    	DrawArrow(ctx,SPRITES_CZ*prct,SPRITES_CZ*(1-prct),SPRITES_CZ*(1-prct),SPRITES_CZ*prct,arrowStyle);
 		}else{
-	    	brushPastille.setResource(path, clipx, clipy, clipw, cliph);
+	    	brushPastille.setResource(path, clipx, clipy, clipw, cliph, brushRotation);
 	    	var ctx = $("#current-brush")[0].getContext('2d');
 	    	ctx.canvas.width=clipw;
 	    	ctx.canvas.height=cliph;
 	    	brushPastille.paint(ctx);
     	}
 	}
+
+	function setBrushRotation(angle){
+		brushPastille.rotation = angle ;
+		var ctx = $("#current-brush")[0].getContext('2d');		
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		brushPastille.paint(ctx);
+	}
+	
     
 	var requestAnimationFrame = window.requestAnimationFrame || 
 	    window.mozRequestAnimationFrame || 
@@ -619,6 +646,8 @@
 		loadMove("img/moveok.png");
 		loadMove("img/cross.png");
 		loadMove("img/triangle.png");	
+		loadMove("img/moveok-nocapture.png");	
+		loadMove("img/jump-nocapture.png");	
 	}
 
 	function initRowsCols(){
@@ -704,6 +733,20 @@
 	        initCanvas();
 			redrawBoard();	
 		});
+		document.onkeyup = function (event) {
+			if (event.keyCode == 78) { // n
+				setBrushRotation(0);
+			}
+			if (event.keyCode == 83) { // s
+				setBrushRotation(Math.PI);
+			}
+			if (event.keyCode == 87) { // w
+				setBrushRotation(-Math.PI/2);
+			}
+			if (event.keyCode == 69) { // e
+				setBrushRotation(Math.PI/2);
+			}
+		};
  	}
 
  	
@@ -988,6 +1031,7 @@
 		<div id="selection">
 			<p>Current brush</p>
 			<canvas id="current-brush" width="100" height="100"></canvas>
+			<p>Rotation : <a href="javascript:setBrushRotation(0);">North</a> <a href="javascript:setBrushRotation(Math.PI);">South</a> <a href="javascript:setBrushRotation(-Math.PI/2);">West</a> <a href="javascript:setBrushRotation(Math.PI/2);">East</a> </p>
 		</div>
 					<div class="seperator"></div>
 		<div id="colors">
