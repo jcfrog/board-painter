@@ -35,7 +35,7 @@ A lot of settings are available to change the board configuration and items’ c
 - Board image : file name of the board image to be saved (PNG file)
 - Save : save image
 - Clear : you can clear all, or just pieces, moves or arrows
-- Current brush : displays the current brush. Change it by clicking on an item (move/piece/arrow)
+- Current brush : displays the current brush. Change it by clicking on an item (move/piece/arrow). Brushes can be rotated, use the rotation links to turn to different directions : North (default), South, East and West.
 - Board colour : choose the 2 colours of the board+ border (background and text)
 - Moves : brush patterns for moves layer
 - Arrows : brush pattern for arrows + colour options (fill and borders)
@@ -46,6 +46,7 @@ A lot of settings are available to change the board configuration and items’ c
 - Click on a square to replace pattern, or erase it if same as brush
 - Shift+Click : fills a line with current pattern (horizontal, vertical or diagonal)
 - Ctrl+Click : paints current pattern + same pattern at symetric position (for instance to place 2 knights at their start position with one single click)
+- Use following shortcuts to rotate current brush : n = North, s = South, e = East, w = West
 
 ## Special thanks
 
